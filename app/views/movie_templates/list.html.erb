@@ -1,0 +1,29 @@
+<h1>List of all movies</h1>
+
+<hr>
+
+<table border = "1"> 
+  <tr>
+    <th>ID</th>
+    <th>Image</th>
+    <th>Title</th>
+    <th>Year</th>
+    <th>Director</th>
+    <th></th>
+  </tr>
+  
+  <%Movie.all.each do |each_movie|%>
+  <tr>
+    <td><%=each_movie.id%></td>
+      <td><img src = "<%=each_movie.image%>" width = "100"></td>
+      <td><%=each_movie.title%></td>
+      <td><%=each_movie.year%></td>
+      <%@this_movie = Movie.all.where(:id == each_movie.id).at(0)%>
+      <%@director_id= each_movie.director_id%>
+      <%@director = Director.all.where(:id == @director_id).at(0).name%>
+      <td><%=@director%></td>
+      <td><a href = "/movies/<%=each_movie.id%>">Show details</a></td>
+  </tr>
+  <%end%>
+
+</table>

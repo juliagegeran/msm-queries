@@ -30,7 +30,7 @@
     <th>Director</th>
     <th></th>
   <tr>
-
+  <%@film_records = Movie.where(:director_id == @this_director.id)%>
   <%@film_records.each do |each_film|%>
   <tr>
     <td><%=each_film.id%></td>
@@ -39,8 +39,8 @@
     <td><%=each_film.year%></td>
     <td><%=@this_director.name%></td>
     <td><a href = "/movies/<%=each_film.id%>">Show details</a></td>
-  
-    
+
+<tr>
   <%end%>
-  <tr>
+
 </table>

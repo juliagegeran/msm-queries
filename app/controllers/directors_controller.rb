@@ -4,11 +4,24 @@ class DirectorsController < ApplicationController
   end
 
   def show
-    director_id = params.fetch("an_id").to_i
-    @this_director = Director.all.where(:id == director_id).at(0)
+    the_id = params.fetch("the_id")
 
-    @film_records = Movie.all.where(:director_id == director_id) 
-    render({:template => "director_templates/details"})
+    if the_id == "youngest"
+      directors_w_dob = Director.all.where.not({:dob => nil})
+      @youngest = directors_w_dob.all.order({:dob => :asc}).last
+      render({:template => "director_templates/youngest"})
+    
+    elsif the_id =="eldest"
+      directors_w_dob = Director.all.where.not({:dob => nil})
+      @eldest = directors_w_dob.all.order({:dob => :asc}).first
+      render({:template => "director_templates/eldest"})
+    
+    else
+      matching_records = Director.where({ :id => the_id })  
+      @this_director = matching_records.at(0)  
+      render({ :template => "director_templates/details" })
+    end
+    
   end
 
 end

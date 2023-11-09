@@ -1,0 +1,28 @@
+<h1>Movie #<%=@this_movie.id%> details</h1>
+
+<a href = "/movies">Go back</a>
+
+<hr>
+
+<dl>
+  <dt>Title</dt>
+    <dd><%=@this_movie.title%></dd>
+  <dt>Year</dt>
+    <dd><%=@this_movie.year%></dd>
+  <dt>Duration</dt>
+    <dd><%=@this_movie.duration%></dd>
+  <dt>Description</dt>
+    <dd><%=@this_movie.description%></dd>
+  <dt>Image</dt>
+    <dd><img src = "<%=@this_movie.image%>" width = 250px></dd>
+  <dt>Director</dt>
+    <%@director = Director.where(:id == @this_movie.director_id).at(0)%>
+    <dd><%=@director.name%></dd>
+  <dt>Created at</dt>
+    <dd><%=@this_movie.created_at%></dd>
+  <dt>Updated at</dt>
+    <dd><%=@this_movie.updated_at%></dd>
+
+</dl>
+
+<hr>
